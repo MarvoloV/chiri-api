@@ -39,6 +39,7 @@ export class AuthService {
     }
     user.isActive = true;
     await this.userRepository.save(user);
+    return { status: true, message: 'Usuario Activado Correctamente' };
   }
   private generateRandomPassword() {
     const charset =
