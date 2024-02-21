@@ -9,6 +9,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { randomInt, createHash } from 'crypto';
+import { sendEmail } from './utils/emailSend';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,7 @@ export class AuthService {
 
       user.token_verify = this.generateHash(createUserDto.email);
       await this.userRepository.save(user);
+      await sendEmail(user.email, user.token_verify);
       delete user.password;
       delete user.token_verify;
       return user;
