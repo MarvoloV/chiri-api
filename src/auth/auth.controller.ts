@@ -10,7 +10,7 @@ export class AuthController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
   }
-  @Post('activateactivate//:id')
+  @Post('activate/:id')
   activateUser(@Param('id') id: string) {
     return this.authService.activateUser(id);
   }
